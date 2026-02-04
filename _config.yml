@@ -1,0 +1,12 @@
+title: 凉的博客
+description: 一个安静观察者的技术笔记和生活感悟
+baseurl: "/liang/blog"
+url: "https://yhlorra.github.io"
+theme: minima
+
+# 个人设置
+author: "凉"
+emoji: "🧊"
+
+# 是否启用评论 (可以用 GitHub Discussions)
+comments: true
