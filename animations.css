@@ -1,0 +1,326 @@
+/**
+ * 凉的博客 - 动画效果
+ * 微妙、有深度、不过度装饰
+ */
+
+/* ============================================
+   Fade In Animations
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ============================================
+   Reveal on Scroll
+   ============================================ */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered reveal for grid items */
+.articles-grid .article-card:nth-child(1) { transition-delay: 0ms; }
+.articles-grid .article-card:nth-child(2) { transition-delay: 150ms; }
+.articles-grid .article-card:nth-child(3) { transition-delay: 300ms; }
+
+/* ============================================
+   Text Animations
+   ============================================ */
+
+@keyframes textShimmer {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.text-shimmer {
+    background: linear-gradient(
+        90deg,
+        var(--text-primary) 0%,
+        var(--accent-primary) 50%,
+        var(--text-primary) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textShimmer 3s linear infinite;
+}
+
+/* ============================================
+   Hover Effects
+   ============================================ */
+
+.hover-lift {
+    transition: transform var(--transition-normal),
+                box-shadow var(--transition-normal);
+}
+
+.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+.hover-glow {
+    transition: box-shadow var(--transition-normal);
+}
+
+.hover-glow:hover {
+    box-shadow: 
+        0 0 20px var(--accent-soft),
+        0 0 40px var(--accent-primary);
+}
+
+.hover-underline {
+    position: relative;
+}
+
+.hover-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-primary);
+    transition: width var(--transition-normal);
+}
+
+.hover-underline:hover::after {
+    width: 100%;
+}
+
+/* ============================================
+   Card Interactions
+   ============================================ */
+
+.card-hover {
+    transition: all var(--transition-normal);
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-hover .card-title {
+    transition: color var(--transition-fast);
+}
+
+.card-hover:hover .card-title {
+    color: var(--accent-primary);
+}
+
+/* ============================================
+   Navigation Animations
+   ============================================ */
+
+.nav-scrolled {
+    background: rgba(248, 250, 252, 0.95);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .nav-scrolled {
+    background: rgba(15, 23, 42, 0.95);
+}
+
+/* ============================================
+   Button Animations
+   ============================================ */
+
+.btn-click {
+    transform: translateY(0);
+    transition: all var(--transition-fast);
+}
+
+.btn-click:active {
+    transform: translateY(2px);
+}
+
+.btn-magnetic {
+    position: relative;
+}
+
+.btn-magnetic::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: var(--radius-lg);
+    background: radial-gradient(
+        circle,
+        var(--accent-soft) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.btn-magnetic:hover::before {
+    opacity: 0.5;
+}
+
+/* ============================================
+   Page Transitions
+   ============================================ */
+
+.page-enter {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.page-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 400ms, transform 400ms;
+}
+
+/* ============================================
+   Loading States
+   ============================================ */
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes skeleton {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--bg-secondary) 0%,
+        var(--bg-tertiary) 50%,
+        var(--bg-secondary) 100%
+    );
+    background-size: 400px 100%;
+    animation: skeleton 1.5s ease-in-out infinite;
+}
+
+/* ============================================
+   Micro-interactions
+   ============================================ */
+
+.cursor-follower {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease,
+                width 0.3s ease,
+                height 0.3s ease,
+                border-color 0.3s ease;
+    mix-blend-mode: difference;
+}
+
+.cursor-follower.active {
+    width: 60px;
+    height: 60px;
+    border-color: var(--accent-primary);
+}
+
+/* Selection styling */
+::selection {
+    background: var(--accent-soft);
+    color: var(--text-primary);
+}
+
+/* Focus states */
+:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+/* ============================================
+   Responsive Animation Adjustments
+   ============================================ */
+
+@media (max-width: 768px) {
+    .reveal {
+        transform: translateY(20px);
+    }
+    
+    .cursor-follower {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
